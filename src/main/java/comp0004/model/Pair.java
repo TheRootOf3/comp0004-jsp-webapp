@@ -1,4 +1,4 @@
-package uk.ac.ucl.model;
+package comp0004.model;
 
 public class Pair<E> {
     private final E item1;
@@ -16,6 +16,4 @@ public class Pair<E> {
     public E get2(){
         return this.item2;
     }
-
-
 }

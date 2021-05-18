@@ -1,13 +1,13 @@
 <%@ page import="java.util.List" %>
-<%@ page import="uk.ac.ucl.model.element.ElementList" %>
-<%@ page import="uk.ac.ucl.model.element.Element" %>
+<%@ page import="comp0004.model.element.ElementList" %>
+<%@ page import="comp0004.model.element.Element" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
 <head>
-    <jsp:include page="/meta.jsp"/>
-    <title>Patient Data App</title>
 
+    <jsp:include page="/meta.jsp"/>
+    <title>List webapp</title>
     <style>
         .themed-grid-col {
             padding-top: .75rem;
@@ -30,8 +30,10 @@
     <jsp:include page="/header.jsp"/>
     <div class="main">
         <%ElementList mainList = (ElementList) request.getAttribute("main_list");%>
+        <div class="row label themed-container text-center">
         <h2><%=mainList.getLabel()%>
         </h2>
+        </div>
         <div class="row" style="font-weight: bold">
             <div class="col-md-8 themed-grid-col ">
                 List name
@@ -93,8 +95,8 @@
         Auto save: <%=autosaveState%>
         <form action="setAutoSave.html" method="POST">
             <input type="hidden" name="list" value="<%=mainList.getID()%>">
-            <input type="radio" name="autosave_state" value="yes" <%=radio1_state%>> Yes
-            <input type="radio" name="autosave_state" value="no" <%=radio2_state%>> No
+            <input type="radio" name="autosave_state" value="yes" <%=radio1_state%>> On
+            <input type="radio" name="autosave_state" value="no" <%=radio2_state%>> Off
             <input type="submit" name="set_autosave" value="Set">
         </form>
 

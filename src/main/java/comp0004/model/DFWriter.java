@@ -1,8 +1,9 @@
-package uk.ac.ucl.model;
+package comp0004.model;
 
-import uk.ac.ucl.model.element.Element;
-import uk.ac.ucl.model.element.Thing;
+import comp0004.model.element.Element;
+import comp0004.model.element.Thing;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -15,7 +16,10 @@ public class DFWriter {
         this.dir = dir;
     }
 
-    public void saveToCSV() throws IOException {
+    public void saveToCSV(boolean thingEdited) throws IOException {
+        if (thingEdited)
+            cleanContent();
+
         FileWriter fw = new FileWriter(this.dir+"db.csv");
 
         fw.write(createHeader());
@@ -28,6 +32,15 @@ public class DFWriter {
             }
         }
         fw.close();
+    }
+
+    private void cleanContent(){
+        File[] fileList = new File(dir+"content").listFiles();
+        if (fileList != null){
+        for(File file: fileList)
+            if (!file.isDirectory())
+                file.delete();
+        }
     }
 
     private String createHeader(){

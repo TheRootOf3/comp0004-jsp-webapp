@@ -1,8 +1,8 @@
-package uk.ac.ucl.servlets;
+package comp0004.servlets;
 
-import uk.ac.ucl.model.DataFrame;
-import uk.ac.ucl.model.Model;
-import uk.ac.ucl.model.ModelFactory;
+import comp0004.model.DataFrame;
+import comp0004.model.Model;
+import comp0004.model.ModelFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +14,8 @@ import java.io.IOException;
 // The servlet invoked to display a list of patients.
 // The url http://localhost:8080/patientList.html is mapped to calling doGet on the servlet object.
 // The servlet object is created automatically, you just provide the class.
-@WebServlet("/setAutoSave.html")
-public class setAutoSaveServlet extends HttpServlet
+@WebServlet("/editThing.html")
+public class editThingServlet extends HttpServlet
 {
 
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
@@ -23,21 +23,19 @@ public class setAutoSaveServlet extends HttpServlet
     // Get the data from the model
     Model model = ModelFactory.getModel();
     DataFrame dataFrame = model.getDataFrame();
-    int listID = Integer.parseInt(request.getParameter("list"));
-    String autosave = request.getParameter("autosave_state");
+    int itemID = Integer.parseInt(request.getParameter("list"));
+    int thingID = Integer.parseInt(request.getParameter("thing"));
+    String newContent = request.getParameter("thing_content");
 
-    model.setAutoSave(autosave.equals("yes"));
+    dataFrame.editThing(newContent, thingID);
+    if (model.isAutoSave())
+      dataFrame.saveAll(true);
+
+    request.setAttribute("list", dataFrame.getElement(itemID));
+
 
     // Invoke the JSP.
     // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.
-    if (listID == 0) {
-      request.setAttribute("main_list", dataFrame.getElement(0));
-      response.sendRedirect("/mainListView2.html");
-    }
-    else {
-//      request.setAttribute("list", dataFrame.getElement(listID));
-      response.sendRedirect("/itemListView.html?list="+listID);
-    }
-
+    response.sendRedirect("/itemListView.html?list="+itemID);
   }
 }

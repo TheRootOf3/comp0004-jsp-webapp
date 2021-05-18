@@ -1,6 +1,6 @@
-<%@ page import="uk.ac.ucl.model.element.ElementList" %>
-<%@ page import="uk.ac.ucl.model.element.Element" %>
-<%@ page import="uk.ac.ucl.model.element.Thing" %>
+<%@ page import="comp0004.model.element.ElementList" %>
+<%@ page import="comp0004.model.element.Element" %>
+<%@ page import="comp0004.model.element.Thing" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 

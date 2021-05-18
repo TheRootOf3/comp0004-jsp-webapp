@@ -1,11 +1,11 @@
-package uk.ac.ucl.model.element;
+package comp0004.model.element;
 
-public class ElementThingText implements Thing {
+public class ElementThingURL implements Thing {
     private String content;
     private final int ID;
     private final Element parent;
 
-    public ElementThingText(String content, int ID, Element parent){
+    public ElementThingURL(String content, int ID, Element parent){
         this.content = content;
         this.ID = ID;
         this.parent = parent;
@@ -18,7 +18,7 @@ public class ElementThingText implements Thing {
 
     @Override
     public String getLabel() {
-        return "text";
+        return "url";
     }
 
     @Override
@@ -32,14 +32,13 @@ public class ElementThingText implements Thing {
     }
 
     @Override
-    public String getType() {
-        return getLabel();
-    }
-
-    @Override
     public void editContent(String newContent) {
         this.content = newContent;
     }
 
+    @Override
+    public String getType() {
+        return getLabel();
+    }
 
 }

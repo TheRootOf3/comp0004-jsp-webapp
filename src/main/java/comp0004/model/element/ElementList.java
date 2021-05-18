@@ -1,4 +1,4 @@
-package uk.ac.ucl.model.element;
+package comp0004.model.element;
 
 import java.util.ArrayList;
 

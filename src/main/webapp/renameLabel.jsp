@@ -1,9 +1,9 @@
-<%@ page import="uk.ac.ucl.model.element.ElementList" %>
+<%@ page import="comp0004.model.element.ElementList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%ElementList elementList = (ElementList) request.getAttribute("list");%>
 
-<div class="label themed-container">
+<div class="label themed-container text-center">
       <div id="label_edit" contenteditable="true" onclick="onClickRename()">
         <h2>
           <%=elementList.getLabel()%>

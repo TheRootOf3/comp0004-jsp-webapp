@@ -1,6 +1,6 @@
-package uk.ac.ucl.model;
+package comp0004.model;
 
-import uk.ac.ucl.model.element.*;
+import comp0004.model.element.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -91,9 +91,9 @@ public class DataFrame {
         ((ElementList)this.elementHashMap.get(elementID)).changeLabel(newLabel);
     }
 
-    public void saveAll() throws IOException{
+    public void saveAll(boolean thingEdited) throws IOException{
         DFWriter dfWriter = new DFWriter(this, "./data/");
-        dfWriter.saveToCSV();
+        dfWriter.saveToCSV(thingEdited);
     }
 
 

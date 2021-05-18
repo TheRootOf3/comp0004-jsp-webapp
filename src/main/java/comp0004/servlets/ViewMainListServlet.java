@@ -1,9 +1,9 @@
-package uk.ac.ucl.servlets;
+package comp0004.servlets;
 
-import uk.ac.ucl.model.DataFrame;
-import uk.ac.ucl.model.Model;
-import uk.ac.ucl.model.ModelFactory;
-import uk.ac.ucl.model.element.Element;
+import comp0004.model.element.Element;
+import comp0004.model.DataFrame;
+import comp0004.model.Model;
+import comp0004.model.ModelFactory;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;

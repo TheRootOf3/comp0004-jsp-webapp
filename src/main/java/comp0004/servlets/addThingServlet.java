@@ -1,11 +1,9 @@
-package uk.ac.ucl.servlets;
+package comp0004.servlets;
 
-import uk.ac.ucl.model.DataFrame;
-import uk.ac.ucl.model.Model;
-import uk.ac.ucl.model.ModelFactory;
+import comp0004.model.DataFrame;
+import comp0004.model.Model;
+import comp0004.model.ModelFactory;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,8 +14,8 @@ import java.io.IOException;
 // The servlet invoked to display a list of patients.
 // The url http://localhost:8080/patientList.html is mapped to calling doGet on the servlet object.
 // The servlet object is created automatically, you just provide the class.
-@WebServlet("/editThing.html")
-public class editThingServlet extends HttpServlet
+@WebServlet("/addThing.html")
+public class addThingServlet extends HttpServlet
 {
 
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
@@ -26,14 +24,15 @@ public class editThingServlet extends HttpServlet
     Model model = ModelFactory.getModel();
     DataFrame dataFrame = model.getDataFrame();
     int itemID = Integer.parseInt(request.getParameter("list"));
-    int thingID = Integer.parseInt(request.getParameter("thing"));
-    String newContent = request.getParameter("thing_content");
+    String content = request.getParameter("thing_content");
+    String type = request.getParameter("type");
 
-    dataFrame.editThing(newContent, thingID);
+    dataFrame.addNewThingToItem(type, content, itemID, -1);
     if (model.isAutoSave())
-      dataFrame.saveAll();
+      dataFrame.saveAll(true);
 
     request.setAttribute("list", dataFrame.getElement(itemID));
+
 
 
     // Invoke the JSP.

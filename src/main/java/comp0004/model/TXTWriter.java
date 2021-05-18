@@ -1,4 +1,4 @@
-package uk.ac.ucl.model;
+package comp0004.model;
 
 import java.io.FileWriter;
 import java.io.IOException;

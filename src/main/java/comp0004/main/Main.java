@@ -1,4 +1,4 @@
-package uk.ac.ucl.main;
+package comp0004.main;
 
 import java.io.File;
 

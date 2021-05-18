@@ -1,11 +1,9 @@
-package uk.ac.ucl.servlets;
+package comp0004.servlets;
 
-import uk.ac.ucl.model.DataFrame;
-import uk.ac.ucl.model.Model;
-import uk.ac.ucl.model.ModelFactory;
+import comp0004.model.DataFrame;
+import comp0004.model.Model;
+import comp0004.model.ModelFactory;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +18,7 @@ import java.io.IOException;
 public class deleteElementServlet extends HttpServlet
 {
 
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
-  {
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the data from the model
     Model model = ModelFactory.getModel();
     DataFrame dataFrame = model.getDataFrame();
@@ -32,7 +29,7 @@ public class deleteElementServlet extends HttpServlet
     System.out.println("DELETING");
     dataFrame.deleteElementFromListCollect(deleteID, listID);
     if (model.isAutoSave())
-      dataFrame.saveAll();
+      dataFrame.saveAll(true);
 
 
     // Invoke the JSP.
