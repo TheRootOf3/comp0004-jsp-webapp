@@ -18,8 +18,9 @@ public class ModelFactory
     if (model == null)
     {
       model = new Model();
+      model.createDemoModel();
       // Note where the .csv file is in the data directory, and the pathname to locate it.
-      model.readFile(new File("./data/patients.csv"));
+//      model.readFile(new File("./data/patients.csv"));
     }
     return model;
   }
