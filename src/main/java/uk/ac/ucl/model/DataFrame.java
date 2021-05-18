@@ -2,6 +2,7 @@ package uk.ac.ucl.model;
 
 import uk.ac.ucl.model.element.*;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class DataFrame {
@@ -62,6 +63,16 @@ public class DataFrame {
 
     public void renameElement(String newLabel, int elementID){
         ((ElementList)this.elementHashMap.get(elementID)).changeLabel(newLabel);
+    }
+
+    public void saveAll(){
+        try{
+            DFWriter dfWriter = new DFWriter(this);
+            dfWriter.saveToCSV("./data/db.csv");
+        }catch (IOException e){
+            System.out.println("Saving error!");
+        }
+
     }
 
 

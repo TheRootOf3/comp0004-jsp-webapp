@@ -75,6 +75,12 @@
             <input type="submit" value="Add list"/>
         </form>
     </div>
+    <div class="saving-section">
+        <form action="saveAll.html" method="POST">
+            <input type="hidden" name="list" value="<%=mainList.getID()%>">
+            <input type="submit" name="save" value="Save all!">
+        </form>
+    </div>
 
     <%--  <jsp:include page="/footer.jsp"/>--%>
 </div>
