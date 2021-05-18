@@ -4,13 +4,13 @@
 <%ElementList elementList = (ElementList) request.getAttribute("list");%>
 
 <div class="label themed-container">
-      <div id="label_edit" contenteditable="false">
+      <div id="label_edit" contenteditable="true" onclick="onClickRename()">
         <h2>
           <%=elementList.getLabel()%>
         </h2>
       </div>
 </div>
-      <button id="button_rename" onclick="onClickRename()">Rename <%=elementList.getType()%></button>
+<%--      <button id="button_rename" onclick="onClickRename()">Rename <%=elementList.getType()%></button>--%>
       <button type="submit" form="form_rename" id="button_rename_yes" style="display: none"
               onclick="onClickRenameYes()">Accept changes
       </button>
@@ -26,12 +26,12 @@
         function onClickRename() {
           labelBeforeChanges = document.getElementById("label_edit").innerHTML;
           var text_edit = document.getElementById("label_edit");
-          if (text_edit.contentEditable === "false") {
-            text_edit.setAttribute("contenteditable", "true");
-            document.getElementById("button_rename").setAttribute("style", "display: none;");
+          // if (text_edit.contentEditable === "false") {
+          //   text_edit.setAttribute("contenteditable", "true");
+          //   document.getElementById("button_rename").setAttribute("style", "display: none;");
             document.getElementById("button_rename_yes").setAttribute("style", "");
             document.getElementById("button_rename_no").setAttribute("style", "");
-          }
+          // }
         }
 
         function onClickRenameYes() {
@@ -41,8 +41,8 @@
         function onClickRenameNo() {
           document.getElementById("button_rename_yes").setAttribute("style", "display: none;");
           document.getElementById("button_rename_no").setAttribute("style", "display: none;");
-          document.getElementById("button_rename").setAttribute("style", "");
+          // document.getElementById("button_rename").setAttribute("style", "");
           document.getElementById("label_edit").innerHTML = labelBeforeChanges;
-          document.getElementById("label_edit").contentEditable = "false";
+          // document.getElementById("label_edit").contentEditable = "false";
         }
       </script>
