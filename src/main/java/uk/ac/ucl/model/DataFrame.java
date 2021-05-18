@@ -60,6 +60,10 @@ public class DataFrame {
         ((Thing) this.elementHashMap.get(thingID)).editContent(newContent);
     }
 
+    public void renameElement(String newLabel, int elementID){
+        ((ElementList)this.elementHashMap.get(elementID)).changeLabel(newLabel);
+    }
+
 
 
     public Element getElement(int elementID){

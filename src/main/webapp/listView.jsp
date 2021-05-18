@@ -29,9 +29,10 @@
 <div class="container">
     <jsp:include page="/header.jsp"/>
     <div class="main">
-        <%ElementList elementList = (ElementList) request.getAttribute("list");%>
-        <h2><%=elementList.getLabel()%>
-        </h2>
+        <jsp:include page="/renameLabel.jsp"/>
+        <%
+            ElementList elementList = (ElementList) request.getAttribute("list");
+        %>
         <div class="row" style="font-weight: bold">
             <div class="col-md-8 themed-grid-col ">
                 Element name

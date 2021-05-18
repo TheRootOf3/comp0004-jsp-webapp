@@ -31,10 +31,10 @@
 <div class="container">
     <jsp:include page="/header.jsp"/>
     <div class="main">
-        <%ElementList elementList = (ElementList) request.getAttribute("list");%>
-        <h2><%=elementList.getLabel()%>
-        </h2>
-
+        <jsp:include page="/renameLabel.jsp"/>
+        <%
+            ElementList elementList = (ElementList) request.getAttribute("list");
+        %>
         <h3>Text Elements</h3>
         <% int id = 0;
             for (Element thing : elementList.getElementList()) {
