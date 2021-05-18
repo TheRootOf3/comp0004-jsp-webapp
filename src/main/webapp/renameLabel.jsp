@@ -3,7 +3,7 @@
 
 <%ElementList elementList = (ElementList) request.getAttribute("list");%>
 
-<div class="label themed-container text-center">
+<div class="label row themed-container text-center">
       <div id="label_edit" contenteditable="true" onclick="onClickRename()">
         <h2>
           <%=elementList.getLabel()%>

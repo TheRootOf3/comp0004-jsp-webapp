@@ -36,7 +36,9 @@
         <%
             ElementList elementList = (ElementList) request.getAttribute("list");
         %>
-        <h3>Text Elements</h3>
+        <div class="container border shadow">
+
+        <h2 class="text-center">Text</h2>
         <% int id = 0;
             for (Element thing : elementList.getElementList()) {
                 if (thing.getLabel().equals("text")) {
@@ -97,7 +99,8 @@
             }
         %>
 
-        <h3>Urls</h3>
+<hr>
+        <h2 class="text-center">Urls</h2>
         <%
             for (Element thing : elementList.getElementList()) {
                 if (thing.getLabel().equals("url")) {
@@ -115,10 +118,10 @@
                 }
             }
         %>
-
-        <div class="adding-section">
+        <hr>
+        <div class="adding-section1">
             <form action="addThing.html" method="POST">
-                <p>Add new thing:</p>
+                <h2>Add new thing:</h2>
                 Thing content: <input type="text" name="thing_content">
                 <input type="radio" name="type" value="text" checked> Text
                 <input type="radio" name="type" value="url"> URL
@@ -126,8 +129,11 @@
                 <input type="submit" value="Add thing"/>
             </form>
         </div>
+        </div>
+        <hr>
 
-
+        <div class="container border shadow">
+        <h2 class="text-center">List</h2>
         <div class="row" style="font-weight: bold">
             <div class="col-md-8 themed-grid-col ">
                 Element name
@@ -171,7 +177,7 @@
                 <form action="deleteElement.html" method="POST">
                     <input type="hidden" name="item_to_delete" value="<%=element.getID()%>">
                     <input type="hidden" name="list" value="<%=elementList.getID()%>">
-                    <input type="submit" class="btn btn-primary " value="Delete item">
+                    <input type="submit" class="btn btn-primary " value="Delete element">
                 </form>
             </div>
         </div>
@@ -179,9 +185,10 @@
                 }
             }
         %>
-        <div class="adding-section">
+        <hr>
+        <div class="adding-section2">
             <form action="addElement.html" method="POST">
-                <p>Add new element:</p>
+                <h2>Add new element:</h2>
                 Element label: <input type="text" name="element_label">
                 <input type="radio" name="type" value="list"> List
                 <input type="radio" name="type" value="item" checked> Item
@@ -192,6 +199,7 @@
 
 
     </div>
+    </div>
 
     <%
         ElementList backList = (ElementList) elementList.getParent();
@@ -201,6 +209,7 @@
         else
             hrefBack = "itemListView.html?list=" + backList.getID();
     %>
+    <hr>
     <a href="<%=hrefBack%>">
         Back to the previous list: <%=backList.getLabel()%>
     </a>

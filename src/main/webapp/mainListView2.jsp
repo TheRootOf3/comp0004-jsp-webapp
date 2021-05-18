@@ -62,15 +62,16 @@
                 <form action="deleteElement.html" method="POST">
                     <input type="hidden" name="item_to_delete" value="<%=elementList.getID()%>">
                     <input type="hidden" name="list" value="<%=mainList.getID()%>">
-                    <input type="submit" class="btn btn-primary " value="Delete item">
+                    <input type="submit" class="btn btn-primary " value="Delete list">
                 </form>
             </div>
         </div>
         <% } %>
     </div>
+    <hr>
     <div class="adding-section">
         <form action="addElement.html" method="POST">
-            <p>Add new list:</p>
+            <h2>Add new list:</h2>
             List label: <input type="text" name="element_label">
             <input type="hidden" name="type" value="list">
             <input type="hidden" name="list" value="<%=mainList.getID()%>">
@@ -78,8 +79,10 @@
         </form>
     </div>
 
-
+    <hr>
     <div class="saving-section">
+        <h2>Settings</h2>
+
 
         <%String autosaveState = "";
           String radio1_state = "checked";
@@ -107,6 +110,9 @@
     </div>
 
     <%--  <jsp:include page="/footer.jsp"/>--%>
+    <hr>
+    <a href="index.html">Go back to the main page.</a>
+
 </div>
 </body>
 </html>

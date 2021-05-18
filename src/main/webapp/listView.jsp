@@ -75,15 +75,16 @@
                 <form action="deleteElement.html" method="POST">
                     <input type="hidden" name="item_to_delete" value="<%=element.getID()%>">
                     <input type="hidden" name="list" value="<%=elementList.getID()%>">
-                    <input type="submit" class="btn btn-primary " value="Delete item">
+                    <input type="submit" class="btn btn-primary " value="Delete element">
                 </form>
             </div>
         </div>
         <% } %>
     </div>
+    <hr>
     <div class="adding-section">
         <form action="addElement.html" method="POST">
-            <p>Add new element:</p>
+            <h2>Add new element:</h2>
             Element label: <input type="text" name="element_label">
             <input type="radio" name="type" value="list"> List
             <input type="radio" name="type" value="item" checked> Item
@@ -100,6 +101,7 @@
         else
             hrefBack = "itemListView.html?list=" + backList.getID();
     %>
+    <hr>
     <a href="<%=hrefBack%>">
         Back to the previous list: <%=backList.getLabel()%>
     </a>
