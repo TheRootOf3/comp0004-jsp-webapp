@@ -6,34 +6,53 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class DFReader {
-    private DataFrame dataFrame;
+    private final DataFrame dataFrame;
+    private final String dir;
 
-    public DFReader(){
+    public DFReader(String dir){
         this.dataFrame = new DataFrame();
+        this.dir = dir;
     }
 
-    public void loadFromFile(String filename) throws IOException {
-        BufferedReader f = new BufferedReader(new FileReader(filename));
+    public void loadFromFile() throws IOException {
+        BufferedReader f = new BufferedReader(new FileReader(this.dir+"db.csv"));
         String entry;
         if ((entry = f.readLine()) == null)
             throw new IOException("Empty File");
 
         while ((entry = f.readLine()) != null) {
-            extractValues(entry);
-//            TODO Read from file and create elements based on the order.
-//            TODO read TXT content and create things
+            createElement(entry);
         }
         f.close();
     }
 
-    private HashMap<String, String> extractValues(String entry){
-        HashMap<String, String> elementValues = new HashMap<>();
+    private void createElement(String entry) throws IOException{
         String[] splitEntry = entry.split(",");
-        elementValues.put("ID", splitEntry[0]);
-        elementValues.put("type", splitEntry[1]);
-        elementValues.put("label", splitEntry[2]);
-        elementValues.put("parent", splitEntry[3]);
-        return elementValues;
+        for (String a : splitEntry){
+            System.out.println(a);
+        }
+        int elementID = Integer.parseInt(splitEntry[0]);
+        String type = splitEntry[1];
+        String label = splitEntry[2].substring(1,splitEntry[2].length()-1);
+        int parentID = Integer.parseInt(splitEntry[3]);
+        switch (type){
+            case "list":
+                this.dataFrame.addNewListToList(label, parentID, elementID);
+                break;
+            case "item":
+                this.dataFrame.addNewItemToList(label, parentID, elementID);
+                break;
+            case "text":
+            case "url":
+                String content = TXTReader.loadFromFile(this.dir+"content/"+elementID+".txt");
+                this.dataFrame.addNewThingToItem(type, content, parentID, elementID);
+                break;
+            default:
+                break;
+        }
     }
 
+    public DataFrame getDataFrame() {
+        return dataFrame;
+    }
 }

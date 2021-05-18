@@ -29,8 +29,12 @@ public class addThingServlet extends HttpServlet
     String content = request.getParameter("thing_content");
     String type = request.getParameter("type");
 
-    dataFrame.addNewThingToItem(type, content, itemID);
+    dataFrame.addNewThingToItem(type, content, itemID, -1);
+    if (model.isAutoSave())
+      dataFrame.saveAll();
+
     request.setAttribute("list", dataFrame.getElement(itemID));
+
 
 
     // Invoke the JSP.

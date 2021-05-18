@@ -28,6 +28,8 @@ public class ViewMainListServlet extends HttpServlet
     Model model = ModelFactory.getModel();
     DataFrame dataFrame = model.getDataFrame();
     request.setAttribute("main_list", dataFrame.getElement(0));
+    request.setAttribute("autosave", String.valueOf(model.isAutoSave()));
+
 
     for (Map.Entry<Integer, Element> entry : dataFrame.getElementHashMap().entrySet()){
       System.out.println(entry.getKey() + " " + entry.getValue().getLabel());

@@ -27,6 +27,8 @@ public class renameElementServlet extends HttpServlet
     String newLabel = request.getParameter("element_label");
 
     dataFrame.renameElement(newLabel, listID);
+    if (model.isAutoSave())
+      dataFrame.saveAll();
 
     // Invoke the JSP.
     // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.

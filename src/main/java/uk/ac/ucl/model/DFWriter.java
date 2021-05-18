@@ -8,21 +8,22 @@ import java.io.IOException;
 
 public class DFWriter {
     private final DataFrame dataFrame;
+    private final String dir;
 
-    public DFWriter(DataFrame dataframe){
+    public DFWriter(DataFrame dataframe, String dir){
         this.dataFrame = dataframe;
+        this.dir = dir;
     }
 
-    public void saveToCSV(String filename) throws IOException {
-        FileWriter fw = new FileWriter(filename);
+    public void saveToCSV() throws IOException {
+        FileWriter fw = new FileWriter(this.dir+"db.csv");
 
         fw.write(createHeader());
         for (Element element : this.dataFrame.getElementHashMap().values()){
             if (element.getParent() != null) {
                 fw.write(createLineEntry(element));
                 if (element instanceof Thing) {
-                    TXTWriter txtWriter = new TXTWriter(((Thing) element).getContent());
-                    txtWriter.saveToTXT("./data/content/"+element.getID() + ".txt");
+                    TXTWriter.saveToTXT(this.dir+"content/"+element.getID() + ".txt", ((Thing) element).getContent());
                 }
             }
         }
@@ -30,12 +31,12 @@ public class DFWriter {
     }
 
     private String createHeader(){
-        return "ID,type,label,parent,content\n";
+        return "ID,type,label,parent\n";
     }
 
     private String createLineEntry(Element element){
         String entry;
-        entry = element.getID() +","+element.getType()+","+element.getLabel()+","+element.getParent().getID()+"\n";
+        entry = element.getID() +","+element.getType()+",\""+element.getLabel()+"\","+element.getParent().getID()+"\n";
         return entry;
     }
 

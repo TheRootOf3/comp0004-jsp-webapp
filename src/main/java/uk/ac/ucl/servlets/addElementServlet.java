@@ -30,11 +30,13 @@ public class addElementServlet extends HttpServlet
     String type = request.getParameter("type");
 
     if (type.equals("list")){
-      dataFrame.addNewListToList(label, listID);
+      dataFrame.addNewListToList(label, listID, -1);
     }
     else if (type.equals("item")){
-      dataFrame.addNewItemToList(label, listID);
+      dataFrame.addNewItemToList(label, listID, -1);
     }
+    if (model.isAutoSave())
+      dataFrame.saveAll();
 
     // Invoke the JSP.
     // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.

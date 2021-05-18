@@ -29,6 +29,9 @@ public class deleteThingServlet extends HttpServlet
     int deleteID =  Integer.parseInt(request.getParameter("thing"));
 
     dataFrame.deleteElementFromListCollect(deleteID, listID);
+    if (model.isAutoSave())
+      dataFrame.saveAll();
+
     request.setAttribute("list", dataFrame.getElement(listID));
 
     // Invoke the JSP.

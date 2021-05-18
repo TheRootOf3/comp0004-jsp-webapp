@@ -19,16 +19,20 @@ public class DataFrame {
         this.elementHashMap.put(0, this.mainList);
     }
 
-    public void addNewListToList(String label, int listID){
-        Element elementList = new ElementList(label, ++this.topID, this.elementHashMap.get(listID), "list");
+    public void addNewListToList(String label, int listID, int ID){
+        if (ID == -1)
+            ID = ++this.topID;
+        Element elementList = new ElementList(label, ID, this.elementHashMap.get(listID), "list");
         ((ElementList) this.elementHashMap.get(listID)).addElement(elementList);
-        this.elementHashMap.put(this.topID, elementList);
+        this.elementHashMap.put(ID, elementList);
     }
 
-    public void addNewItemToList(String label, int listID){
-        Element elementItem = new ElementList(label, ++this.topID, this.elementHashMap.get(listID), "item");
+    public void addNewItemToList(String label, int listID, int ID){
+        if (ID == -1)
+            ID = ++this.topID;
+        Element elementItem = new ElementList(label, ID, this.elementHashMap.get(listID), "item");
         ((ElementList) this.elementHashMap.get(listID)).addElement(elementItem);
-        this.elementHashMap.put(this.topID, elementItem);
+        this.elementHashMap.put(ID, elementItem);
     }
 
 //    public void deleteElementFromList(int elementID, int listID){
@@ -64,16 +68,18 @@ public class DataFrame {
         collected.add(new Pair<>(elementID, listID));
     }
 
-    public void addNewThingToItem(String type, String content, int itemID){
+    public void addNewThingToItem(String type, String content, int itemID, int ID){
+        if (ID == -1)
+            ID = ++this.topID;
         Element thing = null;
         if (type.equals("text"))
-            thing = new ElementThingText(content, ++this.topID, this.elementHashMap.get(itemID));
+            thing = new ElementThingText(content, ID, this.elementHashMap.get(itemID));
         else if (type.equals("url"))
-            thing = new ElementThingURL(content, ++this.topID, this.elementHashMap.get(itemID));
+            thing = new ElementThingURL(content, ID, this.elementHashMap.get(itemID));
 
         if (thing != null) {
             ((ElementList)this.elementHashMap.get(itemID)).addElement(thing);
-            this.elementHashMap.put(this.topID, thing);
+            this.elementHashMap.put(ID, thing);
         }
     }
 
@@ -85,20 +91,19 @@ public class DataFrame {
         ((ElementList)this.elementHashMap.get(elementID)).changeLabel(newLabel);
     }
 
-    public void saveAll(){
-        try{
-            DFWriter dfWriter = new DFWriter(this);
-            dfWriter.saveToCSV("./data/db.csv");
-        }catch (IOException e){
-            System.out.println("Saving error!");
-        }
-
+    public void saveAll() throws IOException{
+        DFWriter dfWriter = new DFWriter(this, "./data/");
+        dfWriter.saveToCSV();
     }
 
 
 
     public Element getElement(int elementID){
         return this.elementHashMap.get(elementID);
+    }
+
+    public void setTopID(int topID){
+        this.topID = topID;
     }
 
 

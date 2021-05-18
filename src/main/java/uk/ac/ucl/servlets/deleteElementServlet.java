@@ -31,6 +31,9 @@ public class deleteElementServlet extends HttpServlet
 //    dataFrame.deleteElementFromList(deleteID, listID);
     System.out.println("DELETING");
     dataFrame.deleteElementFromListCollect(deleteID, listID);
+    if (model.isAutoSave())
+      dataFrame.saveAll();
+
 
     // Invoke the JSP.
     // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.

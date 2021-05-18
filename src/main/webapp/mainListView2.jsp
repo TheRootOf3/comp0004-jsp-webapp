@@ -75,7 +75,29 @@
             <input type="submit" value="Add list"/>
         </form>
     </div>
+
+
     <div class="saving-section">
+
+        <%String autosaveState = "";
+          String radio1_state = "checked";
+          String radio2_state = "";
+            if (request.getAttribute("autosave").equals("true"))
+                autosaveState = "On.";
+            else{
+                    autosaveState = "Off.";
+                    radio1_state = "";
+                    radio2_state = "checked";
+                }
+        %>
+        Auto save: <%=autosaveState%>
+        <form action="setAutoSave.html" method="POST">
+            <input type="hidden" name="list" value="<%=mainList.getID()%>">
+            <input type="radio" name="autosave_state" value="yes" <%=radio1_state%>> Yes
+            <input type="radio" name="autosave_state" value="no" <%=radio2_state%>> No
+            <input type="submit" name="set_autosave" value="Set">
+        </form>
+
         <form action="saveAll.html" method="POST">
             <input type="hidden" name="list" value="<%=mainList.getID()%>">
             <input type="submit" name="save" value="Save all!">
