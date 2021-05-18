@@ -28,7 +28,9 @@ public class deleteElementServlet extends HttpServlet
     int listID = Integer.parseInt(request.getParameter("list"));
     int deleteID =  Integer.parseInt(request.getParameter("item_to_delete"));
 
-    dataFrame.deleteElementFromList(deleteID, listID);
+//    dataFrame.deleteElementFromList(deleteID, listID);
+    System.out.println("DELETING");
+    dataFrame.deleteElementFromListCollect(deleteID, listID);
 
     // Invoke the JSP.
     // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.

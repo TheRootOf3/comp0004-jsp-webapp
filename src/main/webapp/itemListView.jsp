@@ -32,6 +32,7 @@
     <jsp:include page="/header.jsp"/>
     <div class="main">
         <jsp:include page="/renameLabel.jsp"/>
+<%--        TODO Create nice layout of items--%>
         <%
             ElementList elementList = (ElementList) request.getAttribute("list");
         %>

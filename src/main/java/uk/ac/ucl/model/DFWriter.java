@@ -35,7 +35,7 @@ public class DFWriter {
 
     private String createLineEntry(Element element){
         String entry;
-        entry = element.getID() +",\""+element.getType()+"\",\""+element.getLabel()+"\","+element.getParent().getID()+"\n";
+        entry = element.getID() +","+element.getType()+","+element.getLabel()+","+element.getParent().getID()+"\n";
         return entry;
     }
 
