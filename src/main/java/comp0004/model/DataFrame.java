@@ -4,6 +4,7 @@ import comp0004.model.element.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class DataFrame {
@@ -55,7 +56,8 @@ public class DataFrame {
             System.out.println(pair.get1() + " " + pair.get2());
             ((ElementList) this.elementHashMap.get(pair.get2())).deleteElement(pair.get1());
             this.elementHashMap.remove(pair.get1());
-        };
+        }
+        updateTopID();
     }
 
 //      Recursive collection of elements to delete
@@ -66,6 +68,10 @@ public class DataFrame {
             }
         }
         collected.add(new Pair<>(elementID, listID));
+    }
+
+    private void updateTopID(){
+        setTopID(Collections.max(this.elementHashMap.keySet()));
     }
 
     public void addNewThingToItem(String type, String content, int itemID, int ID){
@@ -94,6 +100,32 @@ public class DataFrame {
     public void saveAll(boolean thingEdited) throws IOException{
         DFWriter dfWriter = new DFWriter(this, "./data/");
         dfWriter.saveToCSV(thingEdited);
+    }
+
+    public ArrayList<ArrayList<ElementList>> searchInElementLabels(String labelSearch){
+        ArrayList<ElementList> matchingElementLists = new ArrayList<>();
+        for (Element element : this.elementHashMap.values()){
+            if (element instanceof ElementList && element.getLabel().contains(labelSearch)) {
+                matchingElementLists.add((ElementList) element);
+//                System.out.println("MATCH! " + element.getLabel());
+            }
+        }
+        ArrayList<ArrayList<ElementList>> traces = new ArrayList<>();
+        for (ElementList element : matchingElementLists)
+            traces.add(getElementTrace(element));
+
+//        System.out.println(traces);
+        return traces;
+    }
+
+    private ArrayList<ElementList> getElementTrace(ElementList element){
+        ArrayList<ElementList> traceElementList = new ArrayList<>();
+        ElementList currentElement = element;
+        while (currentElement.getParent() != null){
+            traceElementList.add(currentElement);
+            currentElement = (ElementList) currentElement.getParent();
+        }
+        return traceElementList;
     }
 
 

@@ -29,7 +29,7 @@ public class Model
       dfReader.loadFromFile();
       this.dataFrame = dfReader.getDataFrame();
       this.dataFrame.setTopID(Collections.max(this.dataFrame.getElementHashMap().keySet()));
-      System.out.println(Collections.max(this.dataFrame.getElementHashMap().keySet()));
+//      System.out.println(Collections.max(this.dataFrame.getElementHashMap().keySet()));
   }
 
   public void setAutoSave(boolean state){
