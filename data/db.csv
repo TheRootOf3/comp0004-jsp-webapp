@@ -1,0 +1,15 @@
+ID,type,label,parent
+2,list,"Shopping",0
+3,list,"Studies TODO",0
+9,item,"Fruits",2
+10,text,"text",9
+11,url,"url",9
+12,item,"Veggies",2
+13,item,"Computer",2
+14,item,"Pass all exams",3
+15,item,"Complete OOP CW",3
+16,item,"Complete PoP CW",3
+17,item,"Theory of Computation",14
+18,item,"Discrete Math",14
+19,item,"Compilers",14
+20,item,"Complete Algo CW",3
