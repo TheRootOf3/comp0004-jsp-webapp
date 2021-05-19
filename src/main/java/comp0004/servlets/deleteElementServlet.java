@@ -4,16 +4,12 @@ import comp0004.model.DataFrame;
 import comp0004.model.Model;
 import comp0004.model.ModelFactory;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-// The servlet invoked to display a list of patients.
-// The url http://localhost:8080/patientList.html is mapped to calling doGet on the servlet object.
-// The servlet object is created automatically, you just provide the class.
 @WebServlet("/deleteElement.html")
 public class deleteElementServlet extends HttpServlet
 {
@@ -25,8 +21,6 @@ public class deleteElementServlet extends HttpServlet
     int listID = Integer.parseInt(request.getParameter("list"));
     int deleteID =  Integer.parseInt(request.getParameter("item_to_delete"));
 
-//    dataFrame.deleteElementFromList(deleteID, listID);
-    System.out.println("DELETING");
     dataFrame.deleteElementFromListCollect(deleteID, listID);
     if (model.isAutoSave())
       dataFrame.saveAll(true);

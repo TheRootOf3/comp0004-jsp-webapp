@@ -1,14 +1,13 @@
 <%@ page import="comp0004.model.element.ElementList" %>
 <%@ page import="comp0004.model.element.Element" %>
-<%@ page import="comp0004.model.element.Thing" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ page import="comp0004.model.element.thing.Thing" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
 <head>
     <jsp:include page="/meta.jsp"/>
 
-    <title>Patient Data App</title>
+    <title>List webapp</title>
 
     <style>
         .themed-grid-col {
@@ -16,13 +15,6 @@
             padding-bottom: .75rem;
             background-color: rgba(86, 61, 124, .15);
             border: 1px solid rgba(86, 61, 124, .2);
-        }
-
-        .themed-container {
-            padding: .75rem;
-            margin-bottom: 1.5rem;
-            background-color: rgba(0, 123, 255, .15);
-            border: 1px solid rgba(0, 123, 255, .2);
         }
     </style>
 
@@ -43,9 +35,10 @@
             for (Element thing : elementList.getElementList()) {
                 if (thing.getLabel().equals("text")) {
                     String text = ((Thing) thing).getContent();
+                    text = text.replaceAll("\n", "<br>");
         %>
 
-        <div id="text_edit_<%=id%>" contenteditable="false" style="white-space: pre-line"><%=text%>
+        <div id="text_edit_<%=id%>" contenteditable="false" style=""><%=text%>
         </div>
         <button id="button_edit_<%=id%>" onclick="onClickEdit(<%=id%>)">Edit text</button>
         <button type="submit" form="form_delete_<%=id%>" id="button_delete_<%=id%>">Delete</button>
@@ -66,7 +59,7 @@
         </form>
 
         <script>
-            var textBeforeChanges;
+            var textBeforeChanges = "";
 
             function onClickEdit(id) {
                 textBeforeChanges = document.getElementById("text_edit_" + id.toString()).innerText;
@@ -151,10 +144,8 @@
                     String href = "itemListView.html?list=" + element.getID();
                     StringBuilder type = new StringBuilder();
                     if (element.getType().equals("list")) {
-//                    href = "listView.html?list=" + element.getID();
                         type = new StringBuilder("list (" + ((ElementList) element).getElementList().size() + " elements)");
                     } else if (element.getType().equals("item")) {
-//                    href = "itemView.html?item=" + element.getID();
                         for (Element thing : ((ElementList) element).getElementList()) {
                             type.append(thing.getType()).append(", ");
                         }
@@ -163,7 +154,6 @@
                         else
                             type.append("empty item");
                     }
-                    //        System.out.println(href);
         %>
         <div class="row ">
             <div class="col-md-8 themed-grid-col">
@@ -214,9 +204,6 @@
         Back to the previous list: <%=backList.getLabel()%>
     </a>
 
-    <%--    <a href="itemListView.html?list=<%=((ElementList)request.getAttribute("parent_list")).getID()%>">--%>
-    <%--        Back to the list: <%=((ElementList)request.getAttribute("parent_list")).getLabel()%></a>--%>
-    <%--<jsp:include page="/footer.jsp"/>--%>
 </div>
 </body>
 </html>

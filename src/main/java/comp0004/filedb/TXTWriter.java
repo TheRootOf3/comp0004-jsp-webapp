@@ -1,4 +1,4 @@
-package comp0004.model;
+package comp0004.filedb;
 
 import java.io.FileWriter;
 import java.io.IOException;

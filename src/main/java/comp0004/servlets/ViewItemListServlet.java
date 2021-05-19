@@ -3,7 +3,6 @@ package comp0004.servlets;
 import comp0004.model.DataFrame;
 import comp0004.model.Model;
 import comp0004.model.ModelFactory;
-import comp0004.model.element.Element;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -13,11 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
 
-// The servlet invoked to display a list of patients.
-// The url http://localhost:8080/patientList.html is mapped to calling doGet on the servlet object.
-// The servlet object is created automatically, you just provide the class.
 @WebServlet("/itemListView.html")
 public class ViewItemListServlet extends HttpServlet
 {
@@ -31,9 +26,7 @@ public class ViewItemListServlet extends HttpServlet
     request.setAttribute("list", dataFrame.getElement(elementID));
     request.setAttribute("parent_list", dataFrame.getElement(elementID).getParent());
 
-    for (Map.Entry<Integer, Element> entry : dataFrame.getElementHashMap().entrySet()){
-      System.out.println(entry.getKey() + " " + entry.getValue().getLabel());
-    }
+
     // Invoke the JSP.
     // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.
     ServletContext context = getServletContext();

@@ -1,5 +1,6 @@
 package comp0004.model;
 
+import java.io.File;
 import java.io.IOException;
 
 // This class gives access to the model to any other class that needs it.
@@ -17,11 +18,13 @@ public class ModelFactory
     if (model == null)
     {
       model = new Model();
-//      model.createDemoModel();
-      model.loadModelFromDir("./data/");
-//       Note where the .csv file is in the data directory, and the pathname to locate it.
-//      model.readFile(new File("./data/patients.csv"));
+      model.loadModelFromDir("."+ File.separator+"data"+ File.separator);
     }
     return model;
+  }
+
+  public static Model reloadModel() throws IOException{
+    model = null;
+    return getModel();
   }
 }

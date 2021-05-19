@@ -1,4 +1,6 @@
-package comp0004.model.element;
+package comp0004.model.element.thing;
+
+import comp0004.model.element.Element;
 
 public class ElementThingURL implements Thing {
     private String content;

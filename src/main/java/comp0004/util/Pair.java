@@ -1,4 +1,4 @@
-package comp0004.model;
+package comp0004.util;
 
 public class Pair<E> {
     private final E item1;

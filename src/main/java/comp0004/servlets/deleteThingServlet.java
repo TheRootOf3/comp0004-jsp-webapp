@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-// The servlet invoked to display a list of patients.
-// The url http://localhost:8080/patientList.html is mapped to calling doGet on the servlet object.
-// The servlet object is created automatically, you just provide the class.
 @WebServlet("/deleteThing.html")
 public class deleteThingServlet extends HttpServlet
 {

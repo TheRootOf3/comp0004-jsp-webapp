@@ -1,7 +1,8 @@
-package comp0004.model;
+package comp0004.filedb;
 
+import comp0004.model.DataFrame;
 import comp0004.model.element.Element;
-import comp0004.model.element.Thing;
+import comp0004.model.element.thing.Thing;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -27,7 +28,7 @@ public class DFWriter {
             if (element.getParent() != null) {
                 fw.write(createLineEntry(element));
                 if (element instanceof Thing) {
-                    TXTWriter.saveToTXT(this.dir+"content/"+element.getID() + ".txt", ((Thing) element).getContent());
+                    TXTWriter.saveToTXT(this.dir+"content"+File.separator+element.getID() + ".txt", ((Thing) element).getContent());
                 }
             }
         }

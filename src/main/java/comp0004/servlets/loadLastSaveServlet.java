@@ -1,8 +1,8 @@
 package comp0004.servlets;
 
+import comp0004.model.DataFrame;
 import comp0004.model.Model;
 import comp0004.model.ModelFactory;
-import comp0004.model.DataFrame;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,19 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/setAutoSave.html")
-public class setAutoSaveServlet extends HttpServlet
+@WebServlet("/loadLastSave.html")
+public class loadLastSaveServlet extends HttpServlet
 {
 
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
   {
     // Get the data from the model
-    Model model = ModelFactory.getModel();
+
+    Model model = ModelFactory.reloadModel();
     DataFrame dataFrame = model.getDataFrame();
     int listID = Integer.parseInt(request.getParameter("list"));
-    String autosave = request.getParameter("autosave_state");
-
-    model.setAutoSave(autosave.equals("yes"));
 
     // Invoke the JSP.
     // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.

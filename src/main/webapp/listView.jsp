@@ -6,7 +6,7 @@
 <html>
 <head>
     <jsp:include page="/meta.jsp"/>
-    <title>Patient Data App</title>
+    <title>List webapp</title>
 
     <style>
         .themed-grid-col {
@@ -16,12 +16,6 @@
             border: 1px solid rgba(86, 61, 124, .2);
         }
 
-        .themed-container {
-            padding: .75rem;
-            margin-bottom: 1.5rem;
-            background-color: rgba(0, 123, 255, .15);
-            border: 1px solid rgba(0, 123, 255, .2);
-        }
     </style>
 
 </head>
@@ -46,7 +40,7 @@
         </div>
         <%
             for (Element element : elementList.getElementList()) {
-                String href = "#";
+                String href = "";
                 StringBuilder type = new StringBuilder();
                 if (element.getType().equals("list")) {
                     href = "itemListView.html?list=" + element.getID();
@@ -61,7 +55,6 @@
                     else
                         type.append("empty item");
                 }
-                //        System.out.println(href);
         %>
         <div class="row ">
             <div class="col-md-8 themed-grid-col">
@@ -105,7 +98,6 @@
     <a href="<%=hrefBack%>">
         Back to the previous list: <%=backList.getLabel()%>
     </a>
-    <%--  <jsp:include page="/footer.jsp"/>--%>
 </div>
 </body>
 </html>

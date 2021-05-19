@@ -46,7 +46,6 @@
             </div>
         </div>
         <%
-            //      ElementList mainList = (ElementList) request.getAttribute("main_list");
             for (Element elementList : mainList.getElementList()) {
                 String href = "itemListView.html?" + "list=" + elementList.getID();
         %>
@@ -118,9 +117,11 @@
             <input type="hidden" name="list" value="<%=mainList.getID()%>">
             <input type="submit" name="save" value="Save all!">
         </form>
+        <form action="loadLastSave.html" method="POST">
+            <input type="hidden" name="list" value="<%=mainList.getID()%>">
+            <input type="submit" name="save" value="Load last save!">
+        </form>
     </div>
-<%--TODO add demo list button--%>
-    <%--  <jsp:include page="/footer.jsp"/>--%>
     <hr>
     <a href="index.html">Go back to the main page.</a>
 

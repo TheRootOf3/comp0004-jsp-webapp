@@ -1,6 +1,9 @@
-package comp0004.model;
+package comp0004.filedb;
+
+import comp0004.model.DataFrame;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -18,6 +21,7 @@ public class DFReader {
         String entry;
         if ((entry = f.readLine()) == null)
             throw new IOException("Empty File");
+//        Omit the first line since it contains headers.
 
         while ((entry = f.readLine()) != null) {
             createElement(entry);
@@ -26,10 +30,8 @@ public class DFReader {
     }
 
     private void createElement(String entry) throws IOException{
+//        0 - id, 1 - type, 2 - label, 3 - parentID
         String[] splitEntry = entry.split(",");
-        for (String a : splitEntry){
-            System.out.println(a);
-        }
         int elementID = Integer.parseInt(splitEntry[0]);
         String type = splitEntry[1];
         String label = splitEntry[2].substring(1,splitEntry[2].length()-1);
@@ -43,7 +45,7 @@ public class DFReader {
                 break;
             case "text":
             case "url":
-                String content = TXTReader.loadFromFile(this.dir+"content/"+elementID+".txt");
+                String content = TXTReader.loadFromFile(this.dir+"content"+ File.separator+elementID+".txt"); //if thing -> read from file
                 this.dataFrame.addNewThingToItem(type, content, parentID, elementID);
                 break;
             default:
