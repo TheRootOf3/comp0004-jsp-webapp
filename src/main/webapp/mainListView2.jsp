@@ -119,7 +119,7 @@
             <input type="submit" name="save" value="Save all!">
         </form>
     </div>
-
+<%--TODO add demo list button--%>
     <%--  <jsp:include page="/footer.jsp"/>--%>
     <hr>
     <a href="index.html">Go back to the main page.</a>

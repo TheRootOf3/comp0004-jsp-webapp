@@ -121,10 +121,11 @@ public class DataFrame {
     private ArrayList<ElementList> getElementTrace(ElementList element){
         ArrayList<ElementList> traceElementList = new ArrayList<>();
         ElementList currentElement = element;
-        while (currentElement.getParent() != null){
+        while (currentElement != null){
             traceElementList.add(currentElement);
             currentElement = (ElementList) currentElement.getParent();
         }
+
         return traceElementList;
     }
 
