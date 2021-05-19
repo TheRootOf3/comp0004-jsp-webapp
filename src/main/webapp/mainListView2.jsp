@@ -79,6 +79,17 @@
         </form>
     </div>
 
+
+    <hr>
+    <div class="search-section">
+        <h2>Search in element labels</h2>
+        <form action="searchInLabels.html" method="POST">
+            Keyword to search: <input type="text" name="keyword_to_search">
+            <input type="hidden" name="list" value="<%=mainList.getID()%>">
+            <input type="submit" value="Search!">
+        </form>
+    </div>
+
     <hr>
     <div class="saving-section">
         <h2>Settings</h2>
