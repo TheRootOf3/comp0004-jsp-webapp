@@ -38,10 +38,8 @@ public class DFReader {
         int parentID = Integer.parseInt(splitEntry[3]);
         switch (type){
             case "list":
-                this.dataFrame.addNewListToList(label, parentID, elementID);
-                break;
             case "item":
-                this.dataFrame.addNewItemToList(label, parentID, elementID);
+                this.dataFrame.addNewElementToList(label, parentID, elementID, type);
                 break;
             case "text":
             case "url":

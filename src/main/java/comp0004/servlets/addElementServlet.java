@@ -24,12 +24,8 @@ public class addElementServlet extends HttpServlet
     String label = request.getParameter("element_label");
     String type = request.getParameter("type");
 
-    if (type.equals("list")){
-      dataFrame.addNewListToList(label, listID, -1);
-    }
-    else if (type.equals("item")){
-      dataFrame.addNewItemToList(label, listID, -1);
-    }
+    dataFrame.addNewElementToList(label, listID, -1, type);
+
     if (model.isAutoSave())
       dataFrame.saveAll(false);
 

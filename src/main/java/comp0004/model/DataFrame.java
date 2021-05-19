@@ -25,20 +25,12 @@ public class DataFrame {
         this.elementHashMap.put(0, mainList);
     }
 
-    public void addNewListToList(String label, int listID, int ID){
+    public void addNewElementToList(String label, int listID, int ID, String type){
         if (ID == -1)
             ID = ++this.topID;
-        Element elementList = new ElementList(label, ID, this.elementHashMap.get(listID), "list");
+        Element elementList = new ElementList(label, ID, this.elementHashMap.get(listID), type);
         ((ElementList) this.elementHashMap.get(listID)).addElement(elementList);
         this.elementHashMap.put(ID, elementList);
-    }
-
-    public void addNewItemToList(String label, int listID, int ID){
-        if (ID == -1)
-            ID = ++this.topID;
-        Element elementItem = new ElementList(label, ID, this.elementHashMap.get(listID), "item");
-        ((ElementList) this.elementHashMap.get(listID)).addElement(elementItem);
-        this.elementHashMap.put(ID, elementItem);
     }
 
     public void deleteElementFromListCollect(int elementID, int listID){
@@ -118,8 +110,6 @@ public class DataFrame {
 
         return traceElementList;
     }
-
-
 
     public Element getElement(int elementID){
         return this.elementHashMap.get(elementID);
