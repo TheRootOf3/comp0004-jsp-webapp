@@ -102,6 +102,8 @@
         <p class=""><a href="<%=url%>"><%=url%>
         </a></p>
 
+
+
         <form action="deleteThing.html" method="POST">
             <input type="hidden" name="list" value="<%=elementList.getID()%>">
             <input type="hidden" name="thing" value="<%=thing.getID()%>">
@@ -111,6 +113,29 @@
                 }
             }
         %>
+            <hr>
+            <h2 class="text-center">Images</h2>
+            <%
+                for (Element thing : elementList.getElementList()) {
+                    if (thing.getLabel().equals("image")) {
+                        String image_url = ((Thing) thing).getContent();
+            %>
+            <div class="container text-center">
+            <img src="<%=image_url%>" class="img-fluid w-25 rounded" alt="image">
+            </div>
+
+
+
+            <form action="deleteThing.html" method="POST">
+                <input type="hidden" name="list" value="<%=elementList.getID()%>">
+                <input type="hidden" name="thing" value="<%=thing.getID()%>">
+                <input type="submit" value="Delete">
+            </form>
+            <%
+                    }
+                }
+            %>
+
         <hr>
         <div class="adding-section1">
             <form action="addThing.html" method="POST">
@@ -118,6 +143,7 @@
                 Thing content: <input type="text" name="thing_content">
                 <input type="radio" name="type" value="text" checked> Text
                 <input type="radio" name="type" value="url"> URL
+                <input type="radio" name="type" value="image"> Image (url address)
                 <input type="hidden" name="list" value="<%=elementList.getID()%>">
                 <input type="submit" value="Add thing"/>
             </form>

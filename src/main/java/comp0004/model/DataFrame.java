@@ -2,6 +2,7 @@ package comp0004.model;
 
 import comp0004.filedb.DFWriter;
 import comp0004.model.element.*;
+import comp0004.model.element.thing.ElementThingImage;
 import comp0004.model.element.thing.ElementThingText;
 import comp0004.model.element.thing.ElementThingURL;
 import comp0004.model.element.thing.Thing;
@@ -61,11 +62,12 @@ public class DataFrame {
     public void addNewThingToItem(String type, String content, int itemID, int ID){
         if (ID == -1)
             ID = ++this.topID;
-        Element thing = null;
-        if (type.equals("text"))
-            thing = new ElementThingText(content, ID, this.elementHashMap.get(itemID));
-        else if (type.equals("url"))
-            thing = new ElementThingURL(content, ID, this.elementHashMap.get(itemID));
+        Element thing = switch (type) {
+            case "text" -> new ElementThingText(content, ID, this.elementHashMap.get(itemID));
+            case "url" -> new ElementThingURL(content, ID, this.elementHashMap.get(itemID));
+            case "image" -> new ElementThingImage(content, ID, this.elementHashMap.get(itemID));
+            default -> null;
+        };
 
         if (thing != null) {
             ((ElementList)this.elementHashMap.get(itemID)).addElement(thing);

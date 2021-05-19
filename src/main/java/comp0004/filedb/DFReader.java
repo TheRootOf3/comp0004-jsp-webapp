@@ -43,6 +43,7 @@ public class DFReader {
                 break;
             case "text":
             case "url":
+            case "image":
                 String content = TXTReader.loadFromFile(this.dir+"content"+ File.separator+elementID+".txt"); //if thing -> read from file
                 this.dataFrame.addNewThingToItem(type, content, parentID, elementID);
                 break;
