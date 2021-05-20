@@ -1,8 +1,7 @@
 package comp0004.model.element.thing;
 
-import comp0004.model.element.Element;
 
-public interface Thing extends Element {
+public interface Thing {
     void editContent(String newContent);
 
     String getContent();
