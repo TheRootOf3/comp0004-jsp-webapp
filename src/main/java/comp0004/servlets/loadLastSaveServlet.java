@@ -23,6 +23,8 @@ public class loadLastSaveServlet extends HttpServlet {
 
         // Invoke the JSP.
         // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.
+
+        //        Direct differently depending on the list type
         if (listID == 0) {
             request.setAttribute("main_list", dataFrame.getElement(0));
             response.sendRedirect("/mainListView2.html");

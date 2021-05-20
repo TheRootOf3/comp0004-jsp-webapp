@@ -16,6 +16,7 @@ public class Model {
         this.autoSave = true;
     }
 
+    //    Load model and setTopID
     public void loadModelFromDir(String dir) throws IOException {
         DFReader dfReader = new DFReader(dir);
         dfReader.loadFromFile();

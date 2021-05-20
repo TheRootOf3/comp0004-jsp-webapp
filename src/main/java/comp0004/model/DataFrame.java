@@ -20,10 +20,11 @@ public class DataFrame {
     public DataFrame() {
         this.topID = 0;
         this.elementHashMap = new HashMap<>();
-        ElementList mainList = new ElementList("Main list", this.topID, null, "list");
+        ElementList mainList = new ElementList("Main list", this.topID, null, "list"); // main list of lists
         this.elementHashMap.put(0, mainList);
     }
 
+    // if ID == -1, then take the next free ID. Otherwise, load id from file.
     public void addNewElementToList(String label, int listID, int ID, String type) {
         if (ID == -1)
             ID = ++this.topID;
@@ -32,6 +33,7 @@ public class DataFrame {
         this.elementHashMap.put(ID, elementList);
     }
 
+    //    delete by firstly traversing all elements, then creating a list of items to remove, then remove them.
     public void deleteElementFromListCollect(int elementID, int listID) {
         ArrayList<Pair<Integer>> collected = new ArrayList<>();
         collectItemsToRemove(collected, elementID, listID);
@@ -53,10 +55,12 @@ public class DataFrame {
         collected.add(new Pair<>(elementID, listID));
     }
 
+    //   When deleting you may remove elements with topID, so update it with the max id of remaining elements.
     private void updateTopID() {
         setTopID(Collections.max(this.elementHashMap.keySet()));
     }
 
+    // if ID == -1, then take the next free ID. Otherwise, load id from file.
     public void addNewThingToItem(String type, String content, int itemID, int ID) {
         if (ID == -1)
             ID = ++this.topID;
@@ -81,20 +85,18 @@ public class DataFrame {
         ((ElementList) this.elementHashMap.get(elementID)).changeLabel(newLabel);
     }
 
+    //    Search in the elementHashMap for elements containing the keyword.
     public ArrayList<ArrayList<ElementList>> searchInElementLabels(String labelSearch) {
-        ArrayList<ElementList> matchingElementLists = new ArrayList<>();
+        ArrayList<ArrayList<ElementList>> traces = new ArrayList<>();
         for (Element element : this.elementHashMap.values()) {
             if (element instanceof ElementList && element.getLabel().contains(labelSearch)) {
-                matchingElementLists.add((ElementList) element);
+                traces.add(getElementTrace((ElementList) element));
             }
         }
-        ArrayList<ArrayList<ElementList>> traces = new ArrayList<>();
-        for (ElementList element : matchingElementLists)
-            traces.add(getElementTrace(element));
-
         return traces;
     }
 
+    //    For an element, return its trace up to the main list (ID=0)
     private ArrayList<ElementList> getElementTrace(ElementList element) {
         ArrayList<ElementList> traceElementList = new ArrayList<>();
         ElementList currentElement = element;

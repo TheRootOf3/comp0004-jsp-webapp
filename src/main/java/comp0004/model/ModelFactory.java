@@ -20,6 +20,7 @@ public class ModelFactory {
         return model;
     }
 
+    // Reload model when asked
     public static Model reloadModel() throws IOException {
         model = null;
         return getModel();

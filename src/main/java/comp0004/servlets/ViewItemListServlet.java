@@ -30,6 +30,7 @@ public class ViewItemListServlet extends HttpServlet {
         ServletContext context = getServletContext();
         RequestDispatcher dispatch = null;
 
+//        Direct differently depending on what is the type of the element
         if (dataFrame.getElement(elementID).getType().equals("list")) {
             dispatch = context.getRequestDispatcher("/listView.jsp");
         } else if (dataFrame.getElement(elementID).getType().equals("item")) {
