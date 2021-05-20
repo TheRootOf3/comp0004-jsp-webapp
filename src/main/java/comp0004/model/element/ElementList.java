@@ -10,7 +10,7 @@ public class ElementList implements Element {
     private final Element parent;
     private final String type;
 
-    public ElementList(String label, int ID, Element parent, String type){
+    public ElementList(String label, int ID, Element parent, String type) {
         this.label = label;
         this.ID = ID;
         this.elementList = new ArrayList<>();
@@ -18,11 +18,11 @@ public class ElementList implements Element {
         this.type = type;
     }
 
-    public void addElement(Element element){
+    public void addElement(Element element) {
         this.elementList.add(element);
     }
 
-    public void deleteElement(int elementID){
+    public void deleteElement(int elementID) {
         this.elementList.removeIf(element -> element.getID() == elementID);
     }
 
@@ -30,7 +30,7 @@ public class ElementList implements Element {
         return elementList;
     }
 
-    public void changeLabel(String newLabel){
+    public void changeLabel(String newLabel) {
         this.label = newLabel;
     }
 

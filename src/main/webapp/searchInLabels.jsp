@@ -1,4 +1,3 @@
-<%@ page import="java.util.List" %>
 <%@ page import="comp0004.model.element.ElementList" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Collections" %>
@@ -38,47 +37,48 @@
         <h3 class="text-center">Found <%=traces.size()%> results.</h3>
     </div>
 
-        <div class="row fw-bold">
-            <div class="col-md-6 themed-grid-col">
-                Found element
-            </div>
-            <div class="col-md-6 themed-grid-col">
-                Element trace
-            </div>
+    <div class="row fw-bold">
+        <div class="col-md-6 themed-grid-col">
+            Found element
         </div>
+        <div class="col-md-6 themed-grid-col">
+            Element trace
+        </div>
+    </div>
 
     <%
-        for (ArrayList<ElementList> array : traces){
-            %>
+        for (ArrayList<ElementList> array : traces) {
+    %>
     <div class="row">
-    <div class="col-md-6 themed-grid-col">
+        <div class="col-md-6 themed-grid-col">
 
-        <h5><%=array.get(0).getLabel()%> - <%=array.get(0).getType()%>
+            <h5><%=array.get(0).getLabel()%> - <%=array.get(0).getType()%>
         </div>
 
-    <div class="col-md-6 themed-grid-col text-center">
-    <%
-            Collections.reverse(array);
-            String href;
-            String label = "";
-            for (ElementList element : array){
-                if (element.getID() == 0)
-                    href = "mainListView2.html";
-                else
-                    href = "itemListView.html?list=" + element.getID();
-                if (element.getID() != array.get(array.size()-1).getID())
-                    label = " -> ";
-                else
-                    label = "";
-                %>
+        <div class="col-md-6 themed-grid-col text-center">
+            <%
+                Collections.reverse(array);
+                String href;
+                String label = "";
+                for (ElementList element : array) {
+                    if (element.getID() == 0)
+                        href = "mainListView2.html";
+                    else
+                        href = "itemListView.html?list=" + element.getID();
+                    if (element.getID() != array.get(array.size() - 1).getID())
+                        label = " -> ";
+                    else
+                        label = "";
+            %>
 
-            <a href="<%=href%>"> <%=element.getLabel()%> </a> <%=label%>
+            <a href="<%=href%>"><%=element.getLabel()%>
+            </a> <%=label%>
             <%
 
-            }
+                }
             %>
 
-    </div>
+        </div>
 
     </div>
     <%

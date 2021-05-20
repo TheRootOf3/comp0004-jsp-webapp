@@ -12,27 +12,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/editThing.html")
-public class editThingServlet extends HttpServlet
-{
+public class editThingServlet extends HttpServlet {
 
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
-  {
-    // Get the data from the model
-    Model model = ModelFactory.getModel();
-    DataFrame dataFrame = model.getDataFrame();
-    int itemID = Integer.parseInt(request.getParameter("list"));
-    int thingID = Integer.parseInt(request.getParameter("thing"));
-    String newContent = request.getParameter("thing_content");
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        // Get the data from the model
+        Model model = ModelFactory.getModel();
+        DataFrame dataFrame = model.getDataFrame();
+        int itemID = Integer.parseInt(request.getParameter("list"));
+        int thingID = Integer.parseInt(request.getParameter("thing"));
+        String newContent = request.getParameter("thing_content");
 
-    dataFrame.editThing(newContent, thingID);
-    if (model.isAutoSave())
-      dataFrame.saveAll(true);
+        dataFrame.editThing(newContent, thingID);
+        if (model.isAutoSave())
+            model.saveAll(true);
 
-    request.setAttribute("list", dataFrame.getElement(itemID));
+        request.setAttribute("list", dataFrame.getElement(itemID));
 
 
-    // Invoke the JSP.
-    // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.
-    response.sendRedirect("/itemListView.html?list="+itemID);
-  }
+        // Invoke the JSP.
+        // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.
+        response.sendRedirect("/itemListView.html?list=" + itemID);
+    }
 }

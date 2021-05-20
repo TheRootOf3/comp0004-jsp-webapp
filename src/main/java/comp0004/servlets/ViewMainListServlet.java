@@ -14,21 +14,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/mainListView2.html")
-public class ViewMainListServlet extends HttpServlet
-{
+public class ViewMainListServlet extends HttpServlet {
 
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
-  {
-    // Get the data from the model
-    Model model = ModelFactory.getModel();
-    DataFrame dataFrame = model.getDataFrame();
-    request.setAttribute("main_list", dataFrame.getElement(0));
-    request.setAttribute("autosave", String.valueOf(model.isAutoSave()));
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        // Get the data from the model
+        Model model = ModelFactory.getModel();
+        DataFrame dataFrame = model.getDataFrame();
+        request.setAttribute("main_list", dataFrame.getElement(0));
+        request.setAttribute("autosave", String.valueOf(model.isAutoSave()));
 
-    // Invoke the JSP.
-    // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.
-    ServletContext context = getServletContext();
-    RequestDispatcher dispatch = context.getRequestDispatcher("/mainListView2.jsp");
-    dispatch.forward(request, response);
-  }
+        // Invoke the JSP.
+        // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.
+        ServletContext context = getServletContext();
+        RequestDispatcher dispatch = context.getRequestDispatcher("/mainListView2.jsp");
+        dispatch.forward(request, response);
+    }
 }

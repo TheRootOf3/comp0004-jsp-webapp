@@ -13,3 +13,6 @@ ID,type,label,parent
 18,item,"Discrete Math",14
 19,item,"Compilers",14
 20,item,"Complete Algo CW",3
+21,text,"text",14
+22,image,"image",14
+23,url,"url",14

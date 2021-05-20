@@ -7,7 +7,7 @@ public class ElementThingText implements Thing {
     private final int ID;
     private final Element parent;
 
-    public ElementThingText(String content, int ID, Element parent){
+    public ElementThingText(String content, int ID, Element parent) {
         this.content = content;
         this.ID = ID;
         this.parent = parent;

@@ -12,25 +12,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/deleteThing.html")
-public class deleteThingServlet extends HttpServlet
-{
+public class deleteThingServlet extends HttpServlet {
 
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
-  {
-    // Get the data from the model
-    Model model = ModelFactory.getModel();
-    DataFrame dataFrame = model.getDataFrame();
-    int listID = Integer.parseInt(request.getParameter("list"));
-    int deleteID =  Integer.parseInt(request.getParameter("thing"));
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        // Get the data from the model
+        Model model = ModelFactory.getModel();
+        DataFrame dataFrame = model.getDataFrame();
+        int listID = Integer.parseInt(request.getParameter("list"));
+        int deleteID = Integer.parseInt(request.getParameter("thing"));
 
-    dataFrame.deleteElementFromListCollect(deleteID, listID);
-    if (model.isAutoSave())
-      dataFrame.saveAll(true);
+        dataFrame.deleteElementFromListCollect(deleteID, listID);
+        if (model.isAutoSave())
+            model.saveAll(true);
 
-    request.setAttribute("list", dataFrame.getElement(listID));
+        request.setAttribute("list", dataFrame.getElement(listID));
 
-    // Invoke the JSP.
-    // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.
-    response.sendRedirect("/itemListView.html?list="+listID);
-  }
+        // Invoke the JSP.
+        // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.
+        response.sendRedirect("/itemListView.html?list=" + listID);
+    }
 }

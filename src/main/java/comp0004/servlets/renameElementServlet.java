@@ -12,30 +12,27 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/renameElement.html")
-public class renameElementServlet extends HttpServlet
-{
+public class renameElementServlet extends HttpServlet {
 
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
-  {
-    // Get the data from the model
-    Model model = ModelFactory.getModel();
-    DataFrame dataFrame = model.getDataFrame();
-    int listID = Integer.parseInt(request.getParameter("list"));
-    String newLabel = request.getParameter("element_label");
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        // Get the data from the model
+        Model model = ModelFactory.getModel();
+        DataFrame dataFrame = model.getDataFrame();
+        int listID = Integer.parseInt(request.getParameter("list"));
+        String newLabel = request.getParameter("element_label");
 
-    dataFrame.renameElement(newLabel, listID);
-    if (model.isAutoSave())
-      dataFrame.saveAll(false);
+        dataFrame.renameElement(newLabel, listID);
+        if (model.isAutoSave())
+            model.saveAll(false);
 
-    // Invoke the JSP.
-    // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.
-    if (listID == 0) {
-      request.setAttribute("main_list", dataFrame.getElement(0));
-      response.sendRedirect("/mainListView2.html");
+        // Invoke the JSP.
+        // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.
+        if (listID == 0) {
+            request.setAttribute("main_list", dataFrame.getElement(0));
+            response.sendRedirect("/mainListView2.html");
+        } else {
+            response.sendRedirect("/itemListView.html?list=" + listID);
+        }
+
     }
-    else {
-      response.sendRedirect("/itemListView.html?list="+listID);
-    }
-
-  }
 }

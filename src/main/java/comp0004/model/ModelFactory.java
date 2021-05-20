@@ -9,22 +9,19 @@ import java.io.IOException;
 // which is returned whenever getModel is called.
 // The factory also illustrates how a data file name can be passed to the model.
 
-public class ModelFactory
-{
-  private static Model model;
+public class ModelFactory {
+    private static Model model;
 
-  public static Model getModel() throws IOException
-  {
-    if (model == null)
-    {
-      model = new Model();
-      model.loadModelFromDir("."+ File.separator+"data"+ File.separator);
+    public static Model getModel() throws IOException {
+        if (model == null) {
+            model = new Model();
+            model.loadModelFromDir("." + File.separator + "data" + File.separator);
+        }
+        return model;
     }
-    return model;
-  }
 
-  public static Model reloadModel() throws IOException{
-    model = null;
-    return getModel();
-  }
+    public static Model reloadModel() throws IOException {
+        model = null;
+        return getModel();
+    }
 }

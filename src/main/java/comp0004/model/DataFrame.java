@@ -1,15 +1,13 @@
 package comp0004.model;
 
-import comp0004.filedb.DFWriter;
-import comp0004.model.element.*;
+import comp0004.model.element.Element;
+import comp0004.model.element.ElementList;
 import comp0004.model.element.thing.ElementThingImage;
 import comp0004.model.element.thing.ElementThingText;
 import comp0004.model.element.thing.ElementThingURL;
 import comp0004.model.element.thing.Thing;
 import comp0004.util.Pair;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -19,14 +17,14 @@ public class DataFrame {
     private final HashMap<Integer, Element> elementHashMap;
     private int topID;
 
-    public DataFrame(){
+    public DataFrame() {
         this.topID = 0;
         this.elementHashMap = new HashMap<>();
         ElementList mainList = new ElementList("Main list", this.topID, null, "list");
         this.elementHashMap.put(0, mainList);
     }
 
-    public void addNewElementToList(String label, int listID, int ID, String type){
+    public void addNewElementToList(String label, int listID, int ID, String type) {
         if (ID == -1)
             ID = ++this.topID;
         Element elementList = new ElementList(label, ID, this.elementHashMap.get(listID), type);
@@ -34,7 +32,7 @@ public class DataFrame {
         this.elementHashMap.put(ID, elementList);
     }
 
-    public void deleteElementFromListCollect(int elementID, int listID){
+    public void deleteElementFromListCollect(int elementID, int listID) {
         ArrayList<Pair<Integer>> collected = new ArrayList<>();
         collectItemsToRemove(collected, elementID, listID);
 //        Elements deletion
@@ -45,8 +43,8 @@ public class DataFrame {
         updateTopID();
     }
 
-//      Recursive collection of elements to delete
-    private void collectItemsToRemove(ArrayList<Pair<Integer>> collected, int elementID, int listID){
+    //      Recursive collection of elements to delete
+    private void collectItemsToRemove(ArrayList<Pair<Integer>> collected, int elementID, int listID) {
         if (!(this.elementHashMap.get(elementID) instanceof Thing)) {
             for (Element element : ((ElementList) this.elementHashMap.get(elementID)).getElementList()) {
                 collectItemsToRemove(collected, element.getID(), elementID);
@@ -55,11 +53,11 @@ public class DataFrame {
         collected.add(new Pair<>(elementID, listID));
     }
 
-    private void updateTopID(){
+    private void updateTopID() {
         setTopID(Collections.max(this.elementHashMap.keySet()));
     }
 
-    public void addNewThingToItem(String type, String content, int itemID, int ID){
+    public void addNewThingToItem(String type, String content, int itemID, int ID) {
         if (ID == -1)
             ID = ++this.topID;
         Element thing = switch (type) {
@@ -70,27 +68,22 @@ public class DataFrame {
         };
 
         if (thing != null) {
-            ((ElementList)this.elementHashMap.get(itemID)).addElement(thing);
+            ((ElementList) this.elementHashMap.get(itemID)).addElement(thing);
             this.elementHashMap.put(ID, thing);
         }
     }
 
-    public void editThing(String newContent, int thingID){
+    public void editThing(String newContent, int thingID) {
         ((Thing) this.elementHashMap.get(thingID)).editContent(newContent);
     }
 
-    public void renameElement(String newLabel, int elementID){
-        ((ElementList)this.elementHashMap.get(elementID)).changeLabel(newLabel);
+    public void renameElement(String newLabel, int elementID) {
+        ((ElementList) this.elementHashMap.get(elementID)).changeLabel(newLabel);
     }
 
-    public void saveAll(boolean thingEdited) throws IOException{
-        DFWriter dfWriter = new DFWriter(this, "."+ File.separator+"data"+ File.separator);
-        dfWriter.saveToCSV(thingEdited);
-    }
-
-    public ArrayList<ArrayList<ElementList>> searchInElementLabels(String labelSearch){
+    public ArrayList<ArrayList<ElementList>> searchInElementLabels(String labelSearch) {
         ArrayList<ElementList> matchingElementLists = new ArrayList<>();
-        for (Element element : this.elementHashMap.values()){
+        for (Element element : this.elementHashMap.values()) {
             if (element instanceof ElementList && element.getLabel().contains(labelSearch)) {
                 matchingElementLists.add((ElementList) element);
             }
@@ -102,10 +95,10 @@ public class DataFrame {
         return traces;
     }
 
-    private ArrayList<ElementList> getElementTrace(ElementList element){
+    private ArrayList<ElementList> getElementTrace(ElementList element) {
         ArrayList<ElementList> traceElementList = new ArrayList<>();
         ElementList currentElement = element;
-        while (currentElement != null){
+        while (currentElement != null) {
             traceElementList.add(currentElement);
             currentElement = (ElementList) currentElement.getParent();
         }
@@ -113,11 +106,11 @@ public class DataFrame {
         return traceElementList;
     }
 
-    public Element getElement(int elementID){
+    public Element getElement(int elementID) {
         return this.elementHashMap.get(elementID);
     }
 
-    public void setTopID(int topID){
+    public void setTopID(int topID) {
         this.topID = topID;
     }
 

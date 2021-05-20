@@ -31,8 +31,8 @@
     <div class="main">
         <%ElementList mainList = (ElementList) request.getAttribute("main_list");%>
         <div class="row label themed-container text-center">
-        <h2><%=mainList.getLabel()%>
-        </h2>
+            <h2><%=mainList.getLabel()%>
+            </h2>
         </div>
         <div class="row" style="font-weight: bold">
             <div class="col-md-8 themed-grid-col ">
@@ -71,7 +71,7 @@
     <div class="adding-section">
         <form action="addElement.html" method="POST">
             <h2>Add new list:</h2>
-            List label: <input type="text" name="element_label">
+            List label: <input type="text" name="element_label" required>
             <input type="hidden" name="type" value="list">
             <input type="hidden" name="list" value="<%=mainList.getID()%>">
             <input type="submit" value="Add list"/>
@@ -83,7 +83,7 @@
     <div class="search-section">
         <h2>Search in element labels</h2>
         <form action="searchInLabels.html" method="POST">
-            Keyword to search: <input type="text" name="keyword_to_search">
+            Keyword to search: <input type="text" name="keyword_to_search" required>
             <input type="hidden" name="list" value="<%=mainList.getID()%>">
             <input type="submit" value="Search!">
         </form>
@@ -94,16 +94,17 @@
         <h2>Settings</h2>
 
 
-        <%String autosaveState = "";
-          String radio1_state = "checked";
-          String radio2_state = "";
+        <%
+            String autosaveState = "";
+            String radio1_state = "checked";
+            String radio2_state = "";
             if (request.getAttribute("autosave").equals("true"))
                 autosaveState = "On.";
-            else{
-                    autosaveState = "Off.";
-                    radio1_state = "";
-                    radio2_state = "checked";
-                }
+            else {
+                autosaveState = "Off.";
+                radio1_state = "";
+                radio2_state = "checked";
+            }
         %>
         Auto save: <%=autosaveState%>
         <form action="setAutoSave.html" method="POST">

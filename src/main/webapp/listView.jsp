@@ -78,7 +78,7 @@
     <div class="adding-section">
         <form action="addElement.html" method="POST">
             <h2>Add new element:</h2>
-            Element label: <input type="text" name="element_label">
+            Element label: <input type="text" name="element_label" required>
             <input type="radio" name="type" value="list"> List
             <input type="radio" name="type" value="item" checked> Item
             <input type="hidden" name="list" value="<%=elementList.getID()%>">
@@ -88,7 +88,7 @@
     <%
         ElementList backList = (ElementList) elementList.getParent();
 
-        String hrefBack = "#";
+        String hrefBack = "";
         if (backList.getID() == 0)
             hrefBack = "mainListView2.html";
         else
