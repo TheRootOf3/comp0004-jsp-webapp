@@ -1,6 +1,6 @@
 package comp0004.filedb;
 
-import comp0004.model.DataFrame;
+import comp0004.model.DataModel;
 import comp0004.model.element.Element;
 import comp0004.model.element.thing.Thing;
 
@@ -8,12 +8,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class DFWriter {
-    private final DataFrame dataFrame;
+public class DMWriter {
+    private final DataModel dataModel;
     private final String dir;
 
-    public DFWriter(DataFrame dataframe, String dir) {
-        this.dataFrame = dataframe;
+    public DMWriter(DataModel dataframe, String dir) {
+        this.dataModel = dataframe;
         this.dir = dir;
     }
 
@@ -24,7 +24,7 @@ public class DFWriter {
         FileWriter fw = new FileWriter(this.dir + "db.csv");
 
         fw.write(createHeader());
-        for (Element element : this.dataFrame.getElementHashMap().values()) {
+        for (Element element : this.dataModel.getElementHashMap().values()) {
             if (element.getParent() != null) {
                 fw.write(createLineEntry(element));
                 if (element instanceof Thing) {

@@ -1,6 +1,6 @@
 package comp0004.servlets;
 
-import comp0004.model.DataFrame;
+import comp0004.model.DataModel;
 import comp0004.model.Model;
 import comp0004.model.ModelFactory;
 
@@ -19,8 +19,8 @@ public class ViewMainListServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // Get the data from the model
         Model model = ModelFactory.getModel();
-        DataFrame dataFrame = model.getDataFrame();
-        request.setAttribute("main_list", dataFrame.getElement(0));
+        DataModel dataModel = model.getDataFrame();
+        request.setAttribute("main_list", dataModel.getElement(0));
         request.setAttribute("autosave", String.valueOf(model.isAutoSave()));
 
         // Invoke the JSP.

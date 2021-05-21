@@ -1,6 +1,6 @@
 package comp0004.servlets;
 
-import comp0004.model.DataFrame;
+import comp0004.model.DataModel;
 import comp0004.model.Model;
 import comp0004.model.ModelFactory;
 
@@ -17,16 +17,16 @@ public class editThingServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // Get the data from the model
         Model model = ModelFactory.getModel();
-        DataFrame dataFrame = model.getDataFrame();
+        DataModel dataModel = model.getDataFrame();
         int itemID = Integer.parseInt(request.getParameter("list"));
         int thingID = Integer.parseInt(request.getParameter("thing"));
         String newContent = request.getParameter("thing_content");
 
-        dataFrame.editThing(newContent, thingID);
+        dataModel.editThing(newContent, thingID);
         if (model.isAutoSave())
             model.saveAll(true);
 
-        request.setAttribute("list", dataFrame.getElement(itemID));
+        request.setAttribute("list", dataModel.getElement(itemID));
 
 
         // Invoke the JSP.

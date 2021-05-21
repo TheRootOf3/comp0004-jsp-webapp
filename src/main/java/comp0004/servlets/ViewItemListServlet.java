@@ -1,6 +1,6 @@
 package comp0004.servlets;
 
-import comp0004.model.DataFrame;
+import comp0004.model.DataModel;
 import comp0004.model.Model;
 import comp0004.model.ModelFactory;
 
@@ -19,10 +19,10 @@ public class ViewItemListServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // Get the data from the model
         Model model = ModelFactory.getModel();
-        DataFrame dataFrame = model.getDataFrame();
+        DataModel dataModel = model.getDataFrame();
         int elementID = Integer.parseInt(request.getParameter("list"));
-        request.setAttribute("list", dataFrame.getElement(elementID));
-        request.setAttribute("parent_list", dataFrame.getElement(elementID).getParent());
+        request.setAttribute("list", dataModel.getElement(elementID));
+        request.setAttribute("parent_list", dataModel.getElement(elementID).getParent());
 
 
         // Invoke the JSP.
@@ -31,9 +31,9 @@ public class ViewItemListServlet extends HttpServlet {
         RequestDispatcher dispatch = null;
 
 //        Direct differently depending on what is the type of the element
-        if (dataFrame.getElement(elementID).getType().equals("list")) {
+        if (dataModel.getElement(elementID).getType().equals("list")) {
             dispatch = context.getRequestDispatcher("/listView.jsp");
-        } else if (dataFrame.getElement(elementID).getType().equals("item")) {
+        } else if (dataModel.getElement(elementID).getType().equals("item")) {
             dispatch = context.getRequestDispatcher("/itemListView.jsp");
         }
         if (dispatch != null)

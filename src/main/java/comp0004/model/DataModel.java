@@ -12,12 +12,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-public class DataFrame {
+public class DataModel {
 
     private final HashMap<Integer, Element> elementHashMap;
     private int topID;
 
-    public DataFrame() {
+    public DataModel() {
         this.topID = 0;
         this.elementHashMap = new HashMap<>();
         ElementList mainList = new ElementList("Main list", this.topID, null, "list"); // main list of lists

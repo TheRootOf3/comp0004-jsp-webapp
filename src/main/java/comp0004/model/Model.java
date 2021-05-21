@@ -1,32 +1,32 @@
 package comp0004.model;
 
-import comp0004.filedb.DFReader;
-import comp0004.filedb.DFWriter;
+import comp0004.filedb.DMReader;
+import comp0004.filedb.DMWriter;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 
 public class Model {
-    private DataFrame dataFrame;
+    private DataModel dataModel;
     private boolean autoSave;
 
     public Model() {
-        this.dataFrame = new DataFrame();
+        this.dataModel = new DataModel();
         this.autoSave = true;
     }
 
     //    Load model and setTopID
     public void loadModelFromDir(String dir) throws IOException {
-        DFReader dfReader = new DFReader(dir);
-        dfReader.loadFromFile();
-        this.dataFrame = dfReader.getDataFrame();
-        this.dataFrame.setTopID(Collections.max(this.dataFrame.getElementHashMap().keySet()));
+        DMReader DMReader = new DMReader(dir);
+        DMReader.loadFromFile();
+        this.dataModel = DMReader.getDataFrame();
+        this.dataModel.setTopID(Collections.max(this.dataModel.getElementHashMap().keySet()));
     }
 
     public void saveAll(boolean thingEdited) throws IOException {
-        DFWriter dfWriter = new DFWriter(this.dataFrame, "." + File.separator + "data" + File.separator);
-        dfWriter.saveToCSV(thingEdited);
+        DMWriter DMWriter = new DMWriter(this.dataModel, "." + File.separator + "data" + File.separator);
+        DMWriter.saveToCSV(thingEdited);
     }
 
     public void setAutoSave(boolean state) {
@@ -37,7 +37,7 @@ public class Model {
         return autoSave;
     }
 
-    public DataFrame getDataFrame() {
-        return this.dataFrame;
+    public DataModel getDataFrame() {
+        return this.dataModel;
     }
 }

@@ -1,18 +1,18 @@
 package comp0004.filedb;
 
-import comp0004.model.DataFrame;
+import comp0004.model.DataModel;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class DFReader {
-    private final DataFrame dataFrame;
+public class DMReader {
+    private final DataModel dataModel;
     private final String dir;
 
-    public DFReader(String dir) {
-        this.dataFrame = new DataFrame();
+    public DMReader(String dir) {
+        this.dataModel = new DataModel();
         this.dir = dir;
     }
 
@@ -39,20 +39,20 @@ public class DFReader {
         switch (type) {
             case "list":
             case "item":
-                this.dataFrame.addNewElementToList(label, parentID, elementID, type);
+                this.dataModel.addNewElementToList(label, parentID, elementID, type);
                 break;
             case "text":
             case "url":
             case "image":
                 String content = TXTReader.loadFromFile(this.dir + "content" + File.separator + elementID + ".txt"); //if thing -> read from file
-                this.dataFrame.addNewThingToItem(type, content, parentID, elementID);
+                this.dataModel.addNewThingToItem(type, content, parentID, elementID);
                 break;
             default:
                 break;
         }
     }
 
-    public DataFrame getDataFrame() {
-        return dataFrame;
+    public DataModel getDataFrame() {
+        return dataModel;
     }
 }

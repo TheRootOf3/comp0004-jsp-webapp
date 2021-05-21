@@ -1,6 +1,6 @@
 package comp0004.servlets;
 
-import comp0004.model.DataFrame;
+import comp0004.model.DataModel;
 import comp0004.model.Model;
 import comp0004.model.ModelFactory;
 
@@ -17,15 +17,15 @@ public class deleteThingServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // Get the data from the model
         Model model = ModelFactory.getModel();
-        DataFrame dataFrame = model.getDataFrame();
+        DataModel dataModel = model.getDataFrame();
         int listID = Integer.parseInt(request.getParameter("list"));
         int deleteID = Integer.parseInt(request.getParameter("thing"));
 
-        dataFrame.deleteElementFromListCollect(deleteID, listID);
+        dataModel.deleteElementFromListCollect(deleteID, listID);
         if (model.isAutoSave())
             model.saveAll(true);
 
-        request.setAttribute("list", dataFrame.getElement(listID));
+        request.setAttribute("list", dataModel.getElement(listID));
 
         // Invoke the JSP.
         // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.
