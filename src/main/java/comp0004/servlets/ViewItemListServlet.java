@@ -16,6 +16,8 @@ public class ViewItemListServlet extends AbstractServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        updateModel();
+
         int elementID = Integer.parseInt(request.getParameter("list"));
         request.setAttribute("list", dataModel.getElement(elementID));
         request.setAttribute("parent_list", dataModel.getElement(elementID).getParent());

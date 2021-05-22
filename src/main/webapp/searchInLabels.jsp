@@ -62,7 +62,7 @@
                 String label = "";
                 for (ElementList element : array) {
                     if (element.getID() == 0)
-                        href = "mainListView2.html";
+                        href = "mainListView.html";
                     else
                         href = "itemListView.html?list=" + element.getID();
                     if (element.getID() != array.get(array.size() - 1).getID())
@@ -86,7 +86,7 @@
     %>
 
     <hr>
-    <a href="mainListView2.html">Go back to the main list.</a>
+    <a href="mainListView.html">Go back to the main list.</a>
 
 </div>
 </body>

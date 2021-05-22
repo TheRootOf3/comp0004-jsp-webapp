@@ -16,6 +16,8 @@ public class SearchInLabelsServlet extends AbstractServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        updateModel();
+
         String keyword = request.getParameter("keyword_to_search");
 
         request.setAttribute("traces", dataModel.searchInElementLabels(keyword));

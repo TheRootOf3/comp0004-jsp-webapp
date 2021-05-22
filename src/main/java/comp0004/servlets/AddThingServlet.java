@@ -14,6 +14,8 @@ public class AddThingServlet extends AbstractServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        updateModel();
+
         int itemID = Integer.parseInt(request.getParameter("list"));
         String content = request.getParameter("thing_content");
         String type = request.getParameter("type");

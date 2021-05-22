@@ -14,6 +14,7 @@ public class DeleteThingServlet extends AbstractServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        updateModel();
 
         int listID = Integer.parseInt(request.getParameter("list"));
         int deleteID = Integer.parseInt(request.getParameter("thing"));

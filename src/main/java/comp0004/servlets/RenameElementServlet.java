@@ -14,6 +14,7 @@ public class RenameElementServlet extends AbstractServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        updateModel();
 
         int listID = Integer.parseInt(request.getParameter("list"));
         String newLabel = request.getParameter("element_label");
@@ -28,7 +29,7 @@ public class RenameElementServlet extends AbstractServlet {
         //        Direct differently depending on the list type
         if (listID == 0) {
             request.setAttribute("main_list", dataModel.getElement(0));
-            response.sendRedirect("/mainListView2.html");
+            response.sendRedirect("/mainListView.html");
         } else {
             response.sendRedirect("/itemListView.html?list=" + listID);
         }

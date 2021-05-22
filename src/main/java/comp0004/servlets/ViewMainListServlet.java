@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/mainListView2.html")
+@WebServlet("/mainListView.html")
 public class ViewMainListServlet extends AbstractServlet {
 
     public ViewMainListServlet() throws IOException {
@@ -16,6 +16,8 @@ public class ViewMainListServlet extends AbstractServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        updateModel();
+
         request.setAttribute("main_list", dataModel.getElement(0));
         request.setAttribute("autosave", String.valueOf(model.isAutoSave()));
 

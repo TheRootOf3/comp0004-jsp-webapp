@@ -218,7 +218,7 @@
         ElementList backList = (ElementList) elementList.getParent();
         String hrefBack = "#";
         if (backList.getID() == 0)
-            hrefBack = "mainListView2.html";
+            hrefBack = "mainListView.html";
         else
             hrefBack = "itemListView.html?list=" + backList.getID();
     %>
