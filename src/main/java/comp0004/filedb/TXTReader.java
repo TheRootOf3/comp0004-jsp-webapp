@@ -6,6 +6,7 @@ import java.io.IOException;
 
 public class TXTReader {
 
+    //    Simply read file content
     public static String loadFromFile(String filename) throws IOException {
         BufferedReader f = new BufferedReader(new FileReader(filename));
         StringBuilder content = new StringBuilder();

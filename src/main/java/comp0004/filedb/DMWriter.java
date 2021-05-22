@@ -35,6 +35,7 @@ public class DMWriter {
         fw.close();
     }
 
+    //  Delete all files from the content directory.
     private void cleanContent() {
         File[] fileList = new File(dir + "content").listFiles();
         if (fileList != null) {
