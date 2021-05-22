@@ -22,7 +22,7 @@ public class ViewMainListServlet extends AbstractServlet {
         // Invoke the JSP.
         // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.
         ServletContext context = getServletContext();
-        RequestDispatcher dispatch = context.getRequestDispatcher("/mainListView2.jsp");
+        RequestDispatcher dispatch = context.getRequestDispatcher("/mainListView.jsp");
         dispatch.forward(request, response);
     }
 }
