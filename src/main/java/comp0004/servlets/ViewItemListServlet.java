@@ -1,25 +1,21 @@
 package comp0004.servlets;
 
-import comp0004.model.DataModel;
-import comp0004.model.Model;
-import comp0004.model.ModelFactory;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/itemListView.html")
-public class ViewItemListServlet extends HttpServlet {
+public class ViewItemListServlet extends AbstractServlet {
+
+    public ViewItemListServlet() throws IOException {
+        super();
+    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        // Get the data from the model
-        Model model = ModelFactory.getModel();
-        DataModel dataModel = model.getDataModel();
         int elementID = Integer.parseInt(request.getParameter("list"));
         request.setAttribute("list", dataModel.getElement(elementID));
         request.setAttribute("parent_list", dataModel.getElement(elementID).getParent());
