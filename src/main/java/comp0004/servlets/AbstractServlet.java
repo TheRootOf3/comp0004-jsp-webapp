@@ -11,10 +11,6 @@ public abstract class AbstractServlet extends HttpServlet {
     protected Model model;
     protected DataModel dataModel;
 
-    protected AbstractServlet() throws IOException {
-        updateModel();
-    }
-
     protected void updateModel() throws IOException {
         this.model = ModelFactory.getModel();
         this.dataModel = model.getDataModel();

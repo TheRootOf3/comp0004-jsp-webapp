@@ -9,10 +9,6 @@ import java.io.IOException;
 @WebServlet("/deleteThing.html")
 public class DeleteThingServlet extends AbstractServlet {
 
-    public DeleteThingServlet() throws IOException {
-        super();
-    }
-
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         updateModel();
 

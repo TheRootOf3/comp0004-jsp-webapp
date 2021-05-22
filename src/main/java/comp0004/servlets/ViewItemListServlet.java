@@ -11,9 +11,6 @@ import java.io.IOException;
 @WebServlet("/itemListView.html")
 public class ViewItemListServlet extends AbstractServlet {
 
-    public ViewItemListServlet() throws IOException {
-        super();
-    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         updateModel();

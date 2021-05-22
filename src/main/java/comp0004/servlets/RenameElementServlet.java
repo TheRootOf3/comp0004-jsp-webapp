@@ -9,9 +9,6 @@ import java.io.IOException;
 @WebServlet("/renameElement.html")
 public class RenameElementServlet extends AbstractServlet {
 
-    public RenameElementServlet() throws IOException {
-        super();
-    }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         updateModel();

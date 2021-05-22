@@ -8,10 +8,7 @@ import java.io.IOException;
 
 @WebServlet("/addElement.html")
 public class AddElementServlet extends AbstractServlet {
-
-    public AddElementServlet() throws IOException {
-        super();
-    }
+    
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         updateModel();

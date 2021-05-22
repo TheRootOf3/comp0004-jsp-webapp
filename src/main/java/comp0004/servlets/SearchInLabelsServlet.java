@@ -11,9 +11,6 @@ import java.io.IOException;
 @WebServlet("/searchInLabels.html")
 public class SearchInLabelsServlet extends AbstractServlet {
 
-    public SearchInLabelsServlet() throws IOException {
-        super();
-    }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         updateModel();

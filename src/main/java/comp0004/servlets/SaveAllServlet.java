@@ -9,9 +9,6 @@ import java.io.IOException;
 @WebServlet("/saveAll.html")
 public class SaveAllServlet extends AbstractServlet {
 
-    public SaveAllServlet() throws IOException {
-        super();
-    }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         updateModel();
