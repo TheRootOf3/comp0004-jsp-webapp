@@ -19,7 +19,7 @@ public class ViewMainListServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // Get the data from the model
         Model model = ModelFactory.getModel();
-        DataModel dataModel = model.getDataFrame();
+        DataModel dataModel = model.getDataModel();
         request.setAttribute("main_list", dataModel.getElement(0));
         request.setAttribute("autosave", String.valueOf(model.isAutoSave()));
 

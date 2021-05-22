@@ -19,7 +19,7 @@ public class ViewItemListServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // Get the data from the model
         Model model = ModelFactory.getModel();
-        DataModel dataModel = model.getDataFrame();
+        DataModel dataModel = model.getDataModel();
         int elementID = Integer.parseInt(request.getParameter("list"));
         request.setAttribute("list", dataModel.getElement(elementID));
         request.setAttribute("parent_list", dataModel.getElement(elementID).getParent());

@@ -18,7 +18,7 @@ public class loadLastSaveServlet extends HttpServlet {
         // Get the data from the model
 
         Model model = ModelFactory.reloadModel();
-        DataModel dataModel = model.getDataFrame();
+        DataModel dataModel = model.getDataModel();
         int listID = Integer.parseInt(request.getParameter("list"));
 
         // Invoke the JSP.

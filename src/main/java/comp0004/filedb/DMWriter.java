@@ -12,8 +12,8 @@ public class DMWriter {
     private final DataModel dataModel;
     private final String dir;
 
-    public DMWriter(DataModel dataframe, String dir) {
-        this.dataModel = dataframe;
+    public DMWriter(DataModel datamodel, String dir) {
+        this.dataModel = datamodel;
         this.dir = dir;
     }
 

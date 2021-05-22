@@ -20,7 +20,7 @@ public class Model {
     public void loadModelFromDir(String dir) throws IOException {
         DMReader DMReader = new DMReader(dir);
         DMReader.loadFromFile();
-        this.dataModel = DMReader.getDataFrame();
+        this.dataModel = DMReader.getDataModel();
         this.dataModel.setTopID(Collections.max(this.dataModel.getElementHashMap().keySet()));
     }
 
@@ -37,7 +37,7 @@ public class Model {
         return autoSave;
     }
 
-    public DataModel getDataFrame() {
+    public DataModel getDataModel() {
         return this.dataModel;
     }
 }

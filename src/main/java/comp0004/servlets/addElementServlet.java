@@ -17,7 +17,7 @@ public class addElementServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // Get the data from the model
         Model model = ModelFactory.getModel();
-        DataModel dataModel = model.getDataFrame();
+        DataModel dataModel = model.getDataModel();
         int listID = Integer.parseInt(request.getParameter("list"));
         String label = request.getParameter("element_label");
         String type = request.getParameter("type");

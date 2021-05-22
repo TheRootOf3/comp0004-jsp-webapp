@@ -19,7 +19,7 @@ public class SearchInLabelsServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // Get the data from the model
         Model model = ModelFactory.getModel();
-        DataModel dataModel = model.getDataFrame();
+        DataModel dataModel = model.getDataModel();
         String keyword = request.getParameter("keyword_to_search");
 
         request.setAttribute("traces", dataModel.searchInElementLabels(keyword));

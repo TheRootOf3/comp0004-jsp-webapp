@@ -17,7 +17,7 @@ public class addThingServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // Get the data from the model
         Model model = ModelFactory.getModel();
-        DataModel dataModel = model.getDataFrame();
+        DataModel dataModel = model.getDataModel();
         int itemID = Integer.parseInt(request.getParameter("list"));
         String content = request.getParameter("thing_content");
         String type = request.getParameter("type");

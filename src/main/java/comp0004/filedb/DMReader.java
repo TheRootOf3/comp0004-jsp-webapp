@@ -52,7 +52,7 @@ public class DMReader {
         }
     }
 
-    public DataModel getDataFrame() {
+    public DataModel getDataModel() {
         return dataModel;
     }
 }
